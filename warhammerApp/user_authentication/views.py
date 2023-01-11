@@ -11,7 +11,6 @@ from utilities.authenticators import when_logged_in, when_logged_out
 def register_view(request, *args, **kwargs):
     if request.method == 'POST':
         form = NewUserForm(request.POST)
-        print('POST')
         if form.is_valid():
             print('valid')
             user = form.save()

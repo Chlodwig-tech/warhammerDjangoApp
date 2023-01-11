@@ -43,6 +43,8 @@ INSTALLED_APPS = [
 
     #my apps
     'user_authentication',
+    'warhammer',
+    #'warhammer.weapons',
 ]
 
 
@@ -60,10 +62,10 @@ MIDDLEWARE = [
 ]
 
 CRISPY_TEMPLATE_PACK = 'uni_form'
-SESSION_EXPIRE_SECONDS = 10  # 1 hour
+SESSION_EXPIRE_SECONDS = 900  # 15 minutes
 SESSION_TIMEOUT_REDIRECT = '/login'
 SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
-
+#SESSION_EXPIRE_AT_BROWSER_CLOSE= True
 
 ROOT_URLCONF = 'warhammerApp.urls'
 

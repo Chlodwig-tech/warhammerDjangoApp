@@ -28,4 +28,8 @@ urlpatterns = [
     path('register/', user_authentication.views.register_view),
     path('login/', user_authentication.views.login_view),
     path('logout/', user_authentication.views.logout_view),
+
+    path('warhammer/', include('warhammer.urls')),
+
+    #path('warhammer/', include('warhammer.urls')),
 ]
