@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     'user_authentication',
 ]
 
-CRISPY_TEMPLATE_PACK = 'uni_form'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -55,7 +54,16 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    #installed
+    'django_session_timeout.middleware.SessionTimeoutMiddleware',
 ]
+
+CRISPY_TEMPLATE_PACK = 'uni_form'
+SESSION_EXPIRE_SECONDS = 10  # 1 hour
+SESSION_TIMEOUT_REDIRECT = '/login'
+SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
+
 
 ROOT_URLCONF = 'warhammerApp.urls'
 
@@ -124,6 +132,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+
+STATICFILES_DIRS = [
+   BASE_DIR / "static",
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
