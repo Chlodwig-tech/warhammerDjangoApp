@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %} Warhammer - {{obj.name}} {% endblock %}
+
+
+{% block content %}
+    <h2>{{obj.name}}</h2>
+    </p>
+    <p>
+        Cena: {{obj.get_cost}}
+    </p>
+    <p>Obciążenie : {{obj.enc}}</p>
+    <p>Kategoria : {{obj.group}}</p>
+    <p>Siła Broni : {{obj.damage}}</p>
+    {% if obj.short_range and obj.long_range %}
+        <p>Zasięg: {{obj.short_range}}/{{obj.long_range}}m</p>
+    {% endif %}
+    {% if obj.reload_in_actions %}
+        <p>Przeładowanie: {{obj.reload_in_actions}} akcji</p>
+    {% endif %}
+    <p></p>
+    <p>Cechy oręża : {{obj.get_qualities}}</p>
+    <p>Dostępność : {{obj.availability}}</p>
+
+    {% if obj.description %}
+        <h4>Opis:</h4>
+        <p>{{obj.description}}</p>
+    {% endif %}
+
+    <a href="{{obj.get_absolute_url}}edit">Edytuj</a>
+    <a href="{{obj.get_absolute_url}}delete">Usuń</a>
+
+{% endblock %}

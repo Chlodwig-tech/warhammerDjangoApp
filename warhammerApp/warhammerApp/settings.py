@@ -15,7 +15,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
@@ -25,7 +24,7 @@ SECRET_KEY = 'django-insecure-)_p+jz69-k3kabbbkfpe64zr1(_sqe$oe+f6caw#bddtvpu8ya
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0', '192.168.191.206', '192.168.1.6']
 
 
 # Application definition
@@ -40,10 +39,12 @@ INSTALLED_APPS = [
 
     #installed
     'crispy_forms',
+    'multiselectfield',
 
     #my apps
     'user_authentication',
     'warhammer',
+    'warhammer.applications.weapons',
     #'warhammer.weapons',
 ]
 

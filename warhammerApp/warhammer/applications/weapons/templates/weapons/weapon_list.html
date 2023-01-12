@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Warhammer - Broń{% endblock %}
+
+{% block head %} 
+  <link href="{% static 'css/sortable.css' %}" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+  <script src="{% static 'js/sortable.js' %}"></script>
+
+    <h1>Warhammer - Broń</h1>
+    <div>
+        <a href="/warhammer/weapons/create">Dodaj nową broń</a><br/>
+        <a href="/warhammer/weapons/createrangeweapon">Dodaj nową broń strzelecką</a><br/>
+        <a href="/warhammer/weapons/createmeleeweapon">Dodaj nową broń białą</a>
+    </div>
+    <br/>
+
+    <h3>Broń biała</h3>
+    <table class="sortable">
+        <thead><tr>
+            <th>Nazwa</th>
+            <th>Cena</th>
+            <th>Obciążenie</th>
+            <th>Kategoria</th>
+            <th>Siła broni</th>
+            <th>Cechy oręża</th>
+            <th>Dostępność</th>
+        </tr></thead>
+        
+        <tbody>
+        {% for p in melee_weapons %}
+        <tr>
+            <td><a href="{{p.get_absolute_url}}">{{p.name}}</a></td>
+            <td data-sort="{{p.get_cost_in_p}}">{{p.get_cost}}</td>
+            <td>{{p.enc}}</td>
+            <td>{{p.group}}</td>
+            <td>{{p.get_damage}}</td>
+            <td>{{p.get_qualities}}</td>
+            <td>{{p.availability}}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <br/>
+
+    <h3>Broń strzelecka</h3>
+    <table class="sortable">
+      <thead><tr>
+          <th>Nazwa</th>
+          <th>Cena</th>
+          <th>Obciążenie</th>
+          <th>Kategoria</th>
+          <th>Siła broni</th>
+          <th>Zasięg [m]</th>
+          <th>Przeładowanie [akcje]</th>
+          <th>Cechy oręża</th>
+          <th>Dostępność</th>
+      </tr></thead>
+
+      <tbody>
+      {% for p in range_weapons %}
+      <tr>
+          <td><a href="{{p.get_absolute_url}}">{{p.name}}</a></td>
+          <td data-sort="{{p.get_cost_in_p}}">{{p.get_cost}}</td>
+          <td>{{p.enc}}</td>
+          <td>{{p.group}}</td>
+          <td>{{p.get_damage}}</td>
+          <td data-sort="{{p.short_range}}">{{p.get_range}}</td>
+          <td>{{p.reload_in_actions}}</td>
+          <td>{{p.get_qualities}}</td>
+          <td>{{p.availability}}</td>
+      </tr>
+      {% endfor %}
+      </tbody>
+  </table>
+    
+{% endblock %}
+
