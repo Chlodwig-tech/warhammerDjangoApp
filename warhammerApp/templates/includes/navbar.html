@@ -1,26 +1,58 @@
+<style>
+  .dropdown {
+    display: inline-block;
+  }
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+  .dropdown-content a:hover {background-color: #f1f1f1;}
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+</style>
+
 <nav class="navbar navbar-expand-sm navbar-light bg-light">
-    <a class="navbar-brand" href="/welcome">Navbar</a>
+    <a class="navbar-brand" href="/welcome">NAZWA???</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="False" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
+
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
       {% if user.is_authenticated %}
       
       <li class="nav-item">
-        <a class="nav-link" href="#">Welcome, {{user.username}}</a>
+        <a class="nav-link" href="#">Witaj, {{user.username}}</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/warhammer">Warhammer</a>
+
+      <li class="dropdown nav-item">
+        <a href="/warhammer" class="nav-link">Warhammer</a>
+        <div class="dropdown-content">
+          <a href="/warhammer/weapons">Broń</a>
+        </div>
       </li>
+
       <li class="nav-item">
-        <a class="nav-link" href="/logout">Logout</a>
+        <a class="nav-link" href="/logout">Wyloguj się</a>
       </li>
 
       {% else %}
 
       <li class="nav-item">
-        <a class="nav-link" href="/login">Login</a>
+        <a class="nav-link" href="/login">Zaloguj się</a>
       </li>
 
       {% endif %}
