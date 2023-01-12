@@ -15,10 +15,10 @@ def register_view(request, *args, **kwargs):
             print('valid')
             user = form.save()
             login(request, user)
-            messages.success(request, 'Registration successful')
+            messages.success(request, 'Rejestracja przebiegła pomyślnie')
             return redirect('/login')
 
-        messages.error(request, 'Unsuccessful registration. Invalid information')
+        messages.error(request, 'Rejsetracja nie udała się. Podano nieprawidłowe dane.')
 
     form = NewUserForm()
     context = {
@@ -38,11 +38,11 @@ def login_view(request, *args, **kwargs):
 
             if user is not None:
                 login(request, user)
-                messages.info(request, f"You are now logged in as {username}.")
+                messages.info(request, f"Jesteś zalogowany jako {username}.")
                 return redirect('/welcome')
-            messages.error(request,"Invalid username or password.")
+            messages.error(request,"Nieprawidłowy login lub hasło.")
         else:
-            messages.error(request,"Invalid username or password.")
+            messages.error(request,"Nieprawidłowy login lub hasło.")
             
     form = LoginForm()
     context = {
@@ -53,5 +53,5 @@ def login_view(request, *args, **kwargs):
 @when_logged_in
 def logout_view(request, *args, **kwargs):
     logout(request)
-    messages.info(request, "You have successfully logged out.")
+    messages.info(request, "Wylogowałeś się pomyślnie.")
     return redirect('/welcome')

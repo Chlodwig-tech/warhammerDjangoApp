@@ -3,10 +3,10 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 
 class NewUserForm(UserCreationForm):
-    username = forms.CharField(label='', widget=forms.TextInput(attrs={'class': 'form-control', "placeholder": "Username"}))
+    username = forms.CharField(label='', widget=forms.TextInput(attrs={'class': 'form-control', "placeholder": "Login"}))
     email    = forms.EmailField(label='', widget=forms.TextInput(attrs={'class': 'form-control', "placeholder": "Email"}))
-    password1 = forms.CharField(label='', widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'}))
-    password2 = forms.CharField(label='', widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'}))
+    password1 = forms.CharField(label='', widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Hasło'}))
+    password2 = forms.CharField(label='', widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Powtórz hasło'}))
 
     class Meta:
         model = User
@@ -25,5 +25,5 @@ class NewUserForm(UserCreationForm):
         return user
 
 class LoginForm(AuthenticationForm):
-    username = forms.CharField(label='', widget=forms.TextInput(attrs={'class': 'form-control', "placeholder": "Username"}))
-    password = forms.CharField(label='', widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'}))
+    username = forms.CharField(label='', widget=forms.TextInput(attrs={'class': 'form-control', "placeholder": "Login"}))
+    password = forms.CharField(label='', widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Hasło'}))
