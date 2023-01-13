@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %} Warhammer - {{obj.name}} {% endblock %}
+
+{% block content %}
+    <style>
+        table, th, td {
+            border:1px solid black;
+        }
+    </style>
+
+    <h2>{{obj.name}}</h2>
+    <table style="width:100%">
+        <tr>
+            <th>WW</th>
+            <th>US</th>
+            <th>K</th>
+            <th>Odp</th>
+            <th>Zr</th>
+            <th>Int</th>
+            <th>SW</th>
+            <th>Ogd</th>
+        </tr>
+        
+        <tr>
+            <td>{{obj.WW}}</td>
+            <td>{{obj.US}}</td>
+            <td>{{obj.K}}</td>
+            <td>{{obj.Odp}}</td>
+            <td>{{obj.Zr}}</td>
+            <td>{{obj.Int}}</td>
+            <td>{{obj.SW}}</td>
+            <td>{{obj.Ogd}}</td>
+        </tr>
+        <tr>
+            <th>A</th>
+            <th>Żyw</th>
+            <th>S</th>
+            <th>Wt</th>
+            <th>Sz</th>
+            <th>Mag</th>
+            <th>PO</th>
+            <th>PP</th>
+        </tr>
+        <tr>
+            <td>{{obj.A}}</td>
+            <td>{{obj.Zyw}}</td>
+            <td>{{obj.get_s}}</td>
+            <td>{{obj.get_wt}}</td>
+            <td>{{obj.Sz}}</td>
+            <td>{{obj.Mag}}</td>
+            <td>{{obj.PO}}</td>
+            <td>{{obj.PP}}</td>
+        </tr>
+
+    </table>
+
+    <a href="{{obj.get_absolute_url}}edit">Edytuj</a>
+    <a href="{{obj.get_absolute_url}}delete">Usuń</a>
+
+{% endblock %}

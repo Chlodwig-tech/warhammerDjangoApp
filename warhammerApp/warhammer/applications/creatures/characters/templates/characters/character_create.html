@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %} Warhammer - dodaj postać {% endblock %}
+
+{% block content %}
+
+    <div class="container py-5">
+        <h1>Dodaj broń</h1>
+
+        <form method="POST"> {% csrf_token %}
+            {{form.as_p}}
+            <input type='submit' value='Dodaj' />
+        </form>
+    </div>
+{% endblock %}

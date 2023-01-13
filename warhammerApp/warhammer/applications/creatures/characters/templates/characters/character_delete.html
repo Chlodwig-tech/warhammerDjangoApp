@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %} Warhammer - usuń {{obj.name}} {% endblock %}
+
+
+{% block content %}
+    <form method="POST"> {% csrf_token %}
+        <h1>Czy chcesz usunąć postać: {{obj.name}}?</h1>
+        <p><input type='submit' value='Tak' /> <a href="../">Nie</a></p>
+    </form>
+{% endblock %}

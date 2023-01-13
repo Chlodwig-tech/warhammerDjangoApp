@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Warhammer - Postacie{% endblock %}
+
+{% block head %} 
+  <link href="{% static 'css/sortable.css' %}" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+    <script src="{% static 'js/sortable.js' %}"></script>
+
+    <h1>Warhammer - Postacie</h1>
+    <a href="/warhammer/characters/create">Dodaj postać</a>
+
+    <table class="sortable">
+        <thead><tr>
+            <th>Nazwa</th>
+            <th>WW</th>
+            <th>US</th>
+            <th>K</th>
+            <th>Odp</th>
+            <th>Zr</th>
+            <th>Int</th>
+            <th>SW</th>
+            <th>Ogd</th>
+        </tr></thead>
+        
+        <tbody>
+        {% for p in objects %}
+        <tr>
+            <td><a href="{{p.get_absolute_url}}">{{p.name}}</a></td>
+            <td>{{p.WW}}</td>
+            <td>{{p.US}}</td>
+            <td>{{p.K}}</td>
+            <td>{{p.Odp}}</td>
+            <td>{{p.Zr}}</td>
+            <td>{{p.Int}}</td>
+            <td>{{p.SW}}</td>
+            <td>{{p.Ogd}}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
+

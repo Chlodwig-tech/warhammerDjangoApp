@@ -40,11 +40,13 @@ INSTALLED_APPS = [
     #installed
     'crispy_forms',
     'multiselectfield',
+    'mathfilters',
 
     #my apps
     'user_authentication',
     'warhammer',
     'warhammer.applications.weapons',
+    'warhammer.applications.creatures.characters',
     #'warhammer.weapons',
 ]
 
