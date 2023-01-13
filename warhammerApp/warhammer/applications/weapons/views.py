@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
+
 from utilities.authenticators import when_logged_in
+from utilities.view_decorators import create_view, delete_view, detail_view
 
 from .models import Weapon
 from .forms import WeaponForm, MeleeWeaponForm, RangeWeaponForm
@@ -17,59 +19,29 @@ def weapon_list_view(request, *args, **kwargs):
     return render(request, 'weapons/weapon_list.html', context)
 
 @when_logged_in
-def weapon_create_view(request, *args, **kwargs):
-    if request.method == 'POST':
-        form = WeaponForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('../')
-        else:
-            print(form.errors)
-    form = WeaponForm()
-    context = {
-        'form' : form
-    }
-    return render(request, 'weapons/weapon_create.html', context)
-
-@when_logged_in
-def weapon_melee_create_view(request, *args, **kwargs):
-    if request.method == 'POST':
-        form = MeleeWeaponForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('../')
-        else:
-            print(form.errors)
-    form = MeleeWeaponForm()
-    context = {
-        'form' : form
-    }
-    return render(request, 'weapons/weapon_create.html', context)
-
-@when_logged_in
-def weapon_range_create_view(request, *args, **kwargs):
-    if request.method == 'POST':
-        form = RangeWeaponForm(request.POST)
-        if form.is_valid():
-            weapon = form.save()
-            weapon.is_melee = False
-            weapon.save()
-            return redirect('../')
-        else:
-            print(form.errors)
-    form = RangeWeaponForm()
-    context = {
-        'form' : form
-    }
-    return render(request, 'weapons/weapon_create.html', context)
-
-@when_logged_in
-def weapon_detail_view(request, id, *args, **kwargs):
-    obj = get_object_or_404(Weapon, id=id)
-    context = {
-        "obj" : obj
-    }
+@detail_view(Weapon)
+def weapon_detail_view(request, context, *args, **kwargs):
     return render(request, 'weapons/weapon_detail.html', context)
+
+@when_logged_in
+@create_view(WeaponForm)
+def weapon_create_view(request, context, *args, **kwargs):
+    return render(request, 'weapons/weapon_create.html', context)
+
+@when_logged_in
+@create_view(MeleeWeaponForm)
+def weapon_melee_create_view(request, context, *args, **kwargs):
+    return render(request, 'weapons/weapon_create.html', context)
+
+@when_logged_in
+@create_view(RangeWeaponForm)
+def weapon_range_create_view(request, context, *args, **kwargs):
+    return render(request, 'weapons/weapon_create.html', context)
+
+@when_logged_in
+@delete_view(Weapon)
+def weapon_delete_view(request, context, *args, **kwargs):
+    return render(request, 'weapons/weapon_delete.html', context)
 
 @when_logged_in
 def weapon_edit_view(request, id, *args, **kwargs):
@@ -84,16 +56,3 @@ def weapon_edit_view(request, id, *args, **kwargs):
         'form' : form
     }
     return render(request, "weapons/weapon_create.html", context)
-
-@when_logged_in
-def weapon_delete_view(request, id, *args, **kwargs):
-    print('eloo')
-    obj = get_object_or_404(Weapon, id=id)
-    if request.method == 'POST':
-        print('usuwanie')
-        obj.delete()
-        return redirect('../')
-    context = {
-        "obj" : obj
-    }
-    return render(request, 'weapons/weapon_delete.html', context)
