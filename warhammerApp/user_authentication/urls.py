@@ -6,9 +6,9 @@ from .views import(
     logout_view,
 )
 
-app_name = 'auth'
+app_name = 'user_authentication'
 urlpatterns = [
-    path('register/', register_view, name='register'),
-    path('login/', login_view, name='login'),
-    path('logout/', logout_view, name='logout'),
+    path('register/', register_view, name='user_authentication-register'),
+    path('login/', login_view, name='user_authentication-login'),
+    path('logout/', logout_view, name='user_authentication-logout'),
 ]
