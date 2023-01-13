@@ -137,4 +137,4 @@ class Weapon(models.Model):
         return f'{self.damage}'            
 
     def get_absolute_url(self):
-        return reverse('warhammer:warhammer-weapons:weapon-detail', kwargs={'id':self.id})
+        return reverse('warhammer:warhammer-weapons:warhammer-weapons-detail', kwargs={'id':self.id})
